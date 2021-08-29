@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.'], function () {
