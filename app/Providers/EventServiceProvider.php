@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\Auth\UserRequestedActivationEmail;
 use App\Events\Auth\UserSignedUp;
 use App\Listeners\Auth\SendActivationEmail;
 use Illuminate\Auth\Events\Registered;
@@ -21,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         UserSignedUp::class => [
+            SendActivationEmail::class
+        ],
+        UserRequestedActivationEmail::class => [
             SendActivationEmail::class
         ]
     ];
