@@ -3,6 +3,7 @@
 use App\Http\Controllers\Accout\AccountController;
 use App\Http\Controllers\Accout\PasswordController;
 use App\Http\Controllers\Accout\ProfileController;
+use App\Http\Controllers\Auth\ActivationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,8 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
      */
     Route::get('/password', [PasswordController::class, 'index'])->name('password.index');
     Route::post('/password', [PasswordController::class, 'store'])->name('password.store');
+});
+
+Route::group(['prefix' => 'activation', 'as' => 'activation.', 'middleware' => ['guest', 'confirmation_token.expired:/']], function () {
+    Route::get('/{confirmation_token}', [ActivationController::class, 'activate'])->name('activate');
 });
