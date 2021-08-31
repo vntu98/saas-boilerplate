@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Accout\AccountController;
+use App\Http\Controllers\Accout\DeactivateController;
 use App\Http\Controllers\Accout\PasswordController;
 use App\Http\Controllers\Accout\ProfileController;
 use App\Http\Controllers\Auth\ActivationController;
@@ -26,6 +27,12 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
      */
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+
+    /**
+     * Deactivate
+     */
+    Route::get('/deactivate', [DeactivateController::class, 'index'])->name('deactivate.index');
+    Route::post('/deactivate', [DeactivateController::class, 'store'])->name('deactivate.store');
 
     /**
      * Password
