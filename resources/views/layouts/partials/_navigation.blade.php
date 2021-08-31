@@ -15,6 +15,11 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                @admin
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.impersonate.index') }}">{{ __('Impersonate') }}</a>
+                    </li>
+                @endadmin
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('plans.index') }}">{{ __('Plans') }}</a>
                 </li>
@@ -28,10 +33,20 @@
 
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __ ('Register') }}</a>
                         </li>
                     @endif
                 @else
+                    @impersonating
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('impersonate.destroy').submit()">Stop impersonating</a>
+
+                            <form action="{{ route('admin.impersonate.destroy') }}" method="POST" id="impersonate.destroy">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </li>
+                    @endimpersonating
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}

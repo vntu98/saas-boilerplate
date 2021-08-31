@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasConfirmationToken;
+use App\Models\Traits\HasRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +17,8 @@ class User extends Authenticatable
         HasFactory,
         Notifiable,
         HasConfirmationToken,
-        SoftDeletes;
+        SoftDeletes,
+        HasRole;
 
     /**
      * The attributes that are mass assignable.

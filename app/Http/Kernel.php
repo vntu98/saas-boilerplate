@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Impersonate::class,
         ],
 
         'api' => [
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'confirmation_token.expired' => \App\Http\Middleware\ChecksExpiredConfirmationTokens::class,
         'auth.register' => \App\Http\Middleware\AuthenticateRegister::class,
+        'admin' => \App\Http\Middleware\Admin::class,
     ];
 }

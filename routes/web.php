@@ -5,6 +5,7 @@ use App\Http\Controllers\Accout\DeactivateController;
 use App\Http\Controllers\Accout\PasswordController;
 use App\Http\Controllers\Accout\ProfileController;
 use App\Http\Controllers\Accout\TwoFactorController;
+use App\Http\Controllers\Admin\ImpersonateController;
 use App\Http\Controllers\Auth\ActivationController;
 use App\Http\Controllers\Auth\ActivationResendController;
 use App\Http\Controllers\DashboardController;
@@ -19,6 +20,10 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/admin/impersonate', [ImpersonateController::class, 'index'])->name('admin.impersonate.index');
+Route::post('/admin/impersonate', [ImpersonateController::class, 'start'])->name('admin.impersonate.start');
+Route::delete('/admin/impersonate', [ImpersonateController::class, 'destroy'])->name('admin.impersonate.destroy');
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.'], function () {
     Route::get('/', [AccountController::class, 'index'])->name('index');
