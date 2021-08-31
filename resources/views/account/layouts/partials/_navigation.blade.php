@@ -11,4 +11,7 @@
     <li class="nav-item">
         <a class="nav-link {{ return_if(on_page('*/deactivate'), 'active') }}" href="{{ route('account.deactivate.index') }}">Deactivate account</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {{ return_if(on_page('*/twofactor'), 'active') }}" href="{{ route('account.twofactor.index') }}">Two factor authentication</a>
+    </li>
 </ul>

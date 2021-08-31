@@ -4,6 +4,7 @@ use App\Http\Controllers\Accout\AccountController;
 use App\Http\Controllers\Accout\DeactivateController;
 use App\Http\Controllers\Accout\PasswordController;
 use App\Http\Controllers\Accout\ProfileController;
+use App\Http\Controllers\Accout\TwoFactorController;
 use App\Http\Controllers\Auth\ActivationController;
 use App\Http\Controllers\Auth\ActivationResendController;
 use App\Http\Controllers\DashboardController;
@@ -27,6 +28,12 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth'], 'as' => 'account.
      */
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+
+    /**
+     * Profile
+     */
+    Route::get('/twofactor', [TwoFactorController::class, 'index'])->name('twofactor.index');
+    Route::post('/twofactor', [TwoFactorController::class, 'store'])->name('twofactor.store');
 
     /**
      * Deactivate
